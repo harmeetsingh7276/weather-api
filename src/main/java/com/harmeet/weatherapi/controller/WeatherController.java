@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class WeatherController {
     @Autowired
     private WeatherService weatherService;
+
     @GetMapping("/weather/forecast/{city}")
     public ResponseEntity<WeatherResponse> getForecastSummary(@PathVariable String city) {
         return ResponseEntity.ok(weatherService.getForecastSummary(city));

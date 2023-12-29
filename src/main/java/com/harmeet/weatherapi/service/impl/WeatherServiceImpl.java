@@ -8,10 +8,6 @@ import com.harmeet.weatherapi.service.WeatherService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.ResourceAccessException;
-import org.springframework.web.client.RestTemplate;
-
-import java.net.URISyntaxException;
 
 @Service
 @Slf4j
@@ -23,12 +19,8 @@ public class WeatherServiceImpl implements WeatherService {
     public WeatherResponse getForecastSummary(String city) {
         WeatherResponse response = new WeatherResponse();
         WeatherSummaryRequest request = createWeatherSummaryRequestObject(city);
-        String apiEndpoint = String.format(Endpoints.RapidApiGetForecastSummaryByLocationName, city);
-        try {
-            response = restHelper.get(apiEndpoint, request, WeatherResponse.class);
-        } catch (ResourceAccessException e) {
-            log.error("Unable to connect to RAPID API SERVER");
-        }
+        String apiEndpoint = String.format(Endpoints.RAPID_API_GET_FORECAST_SUMMARY_BY_LOCATION_NAME, city);
+        response = restHelper.get(apiEndpoint, request, WeatherResponse.class);
         return response;
     }
 
