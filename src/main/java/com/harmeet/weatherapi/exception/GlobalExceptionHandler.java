@@ -7,13 +7,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.ResourceAccessException;
 
 @ControllerAdvice
 @Slf4j
 public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ResponseEntity<?> handleGenericException(Exception exception) {
         log.error(exception.getMessage());
         ErrorResponse response = new ErrorResponse();
@@ -30,4 +31,16 @@ public class GlobalExceptionHandler {
         response.setMessage(exception.getMessage());
         return ResponseEntity.status(HttpStatus.REQUEST_TIMEOUT).body(response);
     }
+
+
+    @ExceptionHandler(HttpClientErrorException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ResponseEntity<?> handleHttpClientErrorException(HttpClientErrorException exception) {
+        log.error(exception.getMessage());
+        ErrorResponse response = new ErrorResponse();
+        response.setStatus(HttpStatus.NOT_FOUND.toString());
+        response.setMessage(exception.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+    }
+
 }
