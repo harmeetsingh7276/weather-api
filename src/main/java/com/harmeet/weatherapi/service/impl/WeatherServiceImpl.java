@@ -22,6 +22,13 @@ public class WeatherServiceImpl implements WeatherService {
         return restHelper.get(apiEndpoint, request, WeatherResponse.class);
     }
 
+    @Override
+    public WeatherResponse getHourlyForecastSummary(String city) {
+        WeatherSummaryRequest request = createWeatherSummaryRequestObject(city);
+        String apiEndpoint = String.format(Endpoints.RAPID_API_GET_HOURLY_FORECAST_BY_LOCATION_NAME, city);
+        return restHelper.get(apiEndpoint, request, WeatherResponse.class);
+    }
+
     private WeatherSummaryRequest createWeatherSummaryRequestObject(String city) {
         WeatherSummaryRequest request = new WeatherSummaryRequest();
         request.setLocationName(city);
