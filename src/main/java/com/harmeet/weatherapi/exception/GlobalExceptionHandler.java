@@ -28,6 +28,6 @@ public class GlobalExceptionHandler {
         ErrorResponse response = new ErrorResponse();
         response.setStatus(HttpStatus.REQUEST_TIMEOUT.toString());
         response.setMessage(exception.getMessage());
-        return ResponseEntity.internalServerError().body(response);
+        return ResponseEntity.status(HttpStatus.REQUEST_TIMEOUT).body(response);
     }
 }
