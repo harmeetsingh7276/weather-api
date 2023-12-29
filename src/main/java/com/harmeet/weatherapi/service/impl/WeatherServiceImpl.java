@@ -21,18 +21,13 @@ public class WeatherServiceImpl implements WeatherService {
 
     @Override
     public WeatherResponse getForecastSummary(String city) {
-        //Make Request Object Ready for calling rapid api
         WeatherResponse response = new WeatherResponse();
         WeatherSummaryRequest request = createWeatherSummaryRequestObject(city);
-        //Make a call to endpoint
         String apiEndpoint = String.format(Endpoints.RapidApiGetForecastSummaryByLocationName, city);
         try {
             response = restHelper.get(apiEndpoint, request, WeatherResponse.class);
-
         } catch (ResourceAccessException e) {
             log.error("Unable to connect to RAPID API SERVER");
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
         }
         return response;
     }

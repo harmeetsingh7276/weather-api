@@ -19,15 +19,15 @@ import java.util.List;
 public class RestHelper {
     @Autowired
     private RestTemplate restTemplate;
-    //    @Value("rapidapi.key")
-    private String rapidApiKey = "e688860537msh6a337a8edee3abdp19f843jsn0e66213c4cd1"; //"2a3089207bmsh984f31de5c5b40fp1844b8jsnc694caa00828";
-    //    @Value("rapidapi.host")
-    private String rapidApiHost = "forecast9.p.rapidapi.com";
+    @Value("${rapidapi.key}")
+    private String rapidApiKey; //"2a3089207bmsh984f31de5c5b40fp1844b8jsnc694caa00828";
+    @Value("${rapidapi.host}")
+    private String rapidApiHost ;
 
-    public <T> T get(String apiEndpoint, Object entity, Class<T> responseType) throws URISyntaxException {
+    public <T> T get(String apiEndpoint, Object entity, Class<T> responseType) {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(List.of(MediaType.APPLICATION_JSON));
-        headers.setContentType(MediaType.APPLICATION_JSON);
+//        headers.setContentType(MediaType.APPLICATION_JSON);
         headers.set("X-RapidAPI-Key", rapidApiKey);
         headers.set("X-RapidAPI-Host", rapidApiHost);
         HttpEntity<Object> httpEntity = new HttpEntity<>(entity, headers);
