@@ -27,7 +27,6 @@ public class RestHelper {
     public <T> T get(String apiEndpoint, Object entity, Class<T> responseType) {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(List.of(MediaType.APPLICATION_JSON));
-//        headers.setContentType(MediaType.APPLICATION_JSON);
         headers.set("X-RapidAPI-Key", rapidApiKey);
         headers.set("X-RapidAPI-Host", rapidApiHost);
         HttpEntity<Object> httpEntity = new HttpEntity<>(entity, headers);
