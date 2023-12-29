@@ -17,11 +17,9 @@ public class WeatherServiceImpl implements WeatherService {
 
     @Override
     public WeatherResponse getForecastSummary(String city) {
-        WeatherResponse response = new WeatherResponse();
         WeatherSummaryRequest request = createWeatherSummaryRequestObject(city);
         String apiEndpoint = String.format(Endpoints.RAPID_API_GET_FORECAST_SUMMARY_BY_LOCATION_NAME, city);
-        response = restHelper.get(apiEndpoint, request, WeatherResponse.class);
-        return response;
+        return restHelper.get(apiEndpoint, request, WeatherResponse.class);
     }
 
     private WeatherSummaryRequest createWeatherSummaryRequestObject(String city) {
