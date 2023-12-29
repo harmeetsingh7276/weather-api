@@ -8,10 +8,10 @@ import java.util.Date;
 public class ForecastDetails {
     private Date date;
     private Date dateWithTimezone;
-    private int freshSnow;
-    private int snowHeight;
+    private Double freshSnow;
+    private Double snowHeight;
     private Weather weather;
-    private Precipitation precipitation;
+    private Precipitation prec;
     private Double sunHours;
     private Double rainHours;
     private Temperature temperature;

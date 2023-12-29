@@ -6,8 +6,8 @@ import lombok.Data;
 @Data
 public class Precipitation {
     private Double sum;
-    private int probability;
-    private int sumAsRain;
+    private Double probability;
+    private Double sumAsRain;
     @JsonProperty("class")
     private int precipitationClass;
 }

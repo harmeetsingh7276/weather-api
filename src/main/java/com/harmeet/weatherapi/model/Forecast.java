@@ -12,5 +12,4 @@ public class Forecast {
     private Date nextUpdate;
     private String source;
     private String point;
-    private String fingerprint;
 }
