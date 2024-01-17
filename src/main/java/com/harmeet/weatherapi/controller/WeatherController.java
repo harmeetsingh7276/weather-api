@@ -17,12 +17,10 @@ public class WeatherController {
 
     @GetMapping("/weather/forecast/{city}")
     public ResponseEntity<WeatherResponse> getForecastSummary(@PathVariable String city) {
-        //Add Exception handling in case the city data is not present
         return ResponseEntity.ok(weatherService.getForecastSummary(city));
     }
     @GetMapping("/weather/forecast/hourly/{city}")
     public ResponseEntity<WeatherResponse> getHourlyForecastSummary(@PathVariable String city) {
-        //Add Exception handling in case the city data is not present
         return ResponseEntity.ok(weatherService.getHourlyForecastSummary(city));
     }
 }
